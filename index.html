@@ -1,213 +1,562 @@
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>서버 웜업 리서치 및 기술 인프라 저널</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --cream-bg: #FCFBF7;
-      --charcoal-fg: #1E1B18;
-      --gold-accent: #b8976f;
-      --hairline-color: #e5e2db;
-      --serif-font: 'Nanum Myeongjo', serif;
-      --sans-font: 'Outfit', sans-serif;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>백링크 자동화 프로그램 | 서버 웜업 전문 | 마포</title>
+    <meta name="description" content="마포에서 시작하는 서버 웜업 & 백링크 자동화. PBN 운영자를 위한 강력한 툴. 010-6279-0862로 직접 문고리 잡아라.">
+    <meta name="keywords" content="백링크 자동화, 서버 웜업, PBN, 마포, 백링크 프로그램, 자동 백링크, 서버 웜업 프로그램, 마포 백링크">
+    <meta name="bpaas-design-system" content="brutalist-avantgarde">
+    <meta name="bpaas-design-theme" content="kr-neon-void">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://sf-t3-1779642675702-447.pages.dev/">
+
+    <!-- OG 메타 -->
+    <meta property="og:title" content="백링크 자동화 프로그램 | 서버 웜업 전문 | 마포">
+    <meta property="og:description" content="서버 웜업과 백링크 자동화를 한방에. PBN 사이트를 위한 툴. 전화 010-6279-0862">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sf-t3-1779642675702-447.pages.dev/">
+    <meta property="og:image" content="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='630'%3E%3Crect width='1200' height='630' fill='%23000'/%3E%3Ctext x='40' y='400' font-family='Impact' font-size='90' fill='%23ff3b00'%3ESERVER WARMUP%3C/text%3E%3C/svg%3E">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="ko_KR">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="백링크 자동화 프로그램 | 서버 웜업 전문">
+    <meta name="twitter:description" content="서버 웜업과 백링크 자동화를 한번에. PBN 운영자를 위한 필수 도구. 010-6279-0862">
+    <meta name="twitter:image" content="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='418'%3E%3Crect width='800' height='418' fill='%23000'/%3E%3Ctext x='30' y='280' font-family='Impact' font-size='70' fill='%23ff3b00'%3ESERVER WARMUP%3C/text%3E%3C/svg%3E">
+
+    <!-- JSON-LD 스키마 (Organization + LocalBusiness) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "서버 웜업 – 백링크 자동화 프로그램",
+        "url": "https://sf-t3-1779642675702-447.pages.dev/",
+        "logo": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='60'%3E%3Ctext x='0' y='50' font-family='Impact' font-size='48' fill='%23ff3b00'%3EWARMUP%3C/text%3E%3C/svg%3E",
+        "telephone": "+82-10-6279-0862",
+        "areaServed": {
+            "@type": "City",
+            "name": "마포"
+        },
+        "description": "PBN 운영자를 위한 서버 웜업 및 백링크 자동화 솔루션. 직접 개발한 프로그램으로 빠르고 안정적인 백링크 구축.",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "마포구",
+            "addressRegion": "서울특별시",
+            "addressCountry": "KR"
+        }
     }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      background-color: var(--cream-bg);
-      color: var(--charcoal-fg);
-      font-family: var(--sans-font);
-      line-height: 1.8;
-      padding: 0 40px;
-    }
-    .wrapper {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 80px 0;
-    }
-    header {
-      border-bottom: 1px solid var(--hairline-color);
-      padding-bottom: 32px;
-      margin-bottom: 60px;
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-    }
-    .brand {
-      font-family: var(--serif-font);
-      font-size: 1.5rem;
-      font-weight: 800;
-      color: var(--charcoal-fg);
-      text-decoration: none;
-      letter-spacing: 0.05em;
-    }
-    nav { display: flex; gap: 32px; }
-    nav a {
-      color: var(--charcoal-fg);
-      text-decoration: none;
-      font-size: 0.8rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      transition: color 0.3s ease;
-    }
-    nav a:hover { color: var(--gold-accent); }
-    main { padding-bottom: 80px; }
-    .kicker {
-      font-size: 0.75rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-      color: var(--gold-accent);
-      margin-bottom: 24px;
-    }
-    h1 {
-      font-family: var(--serif-font);
-      font-size: 2.8rem;
-      font-weight: 700;
-      line-height: 1.3;
-      letter-spacing: -0.02em;
-      color: var(--charcoal-fg);
-      margin-bottom: 40px;
-    }
-    .story-body {
-      font-family: var(--serif-font);
-      font-size: 1.15rem;
-      color: var(--charcoal-fg);
-      font-weight: 400;
-      text-align: justify;
-      margin-bottom: 60px;
-    }
-    .story-body p { margin-bottom: 24px; text-indent: 12px; }
-    .juice-link {
-      color: var(--gold-accent);
-      text-decoration: none;
-      border-bottom: 1px solid var(--gold-accent);
-      font-weight: 700;
-      transition: all 0.3s ease;
-    }
-    .juice-link:hover {
-      color: var(--charcoal-fg);
-      border-bottom-color: var(--charcoal-fg);
-    }
-    .editorials {
-      border-top: 1px solid var(--hairline-color);
-      padding-top: 60px;
-    }
-    .editorial-label {
-      font-size: 0.8rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      color: var(--gold-accent);
-      margin-bottom: 40px;
-    }
-    .editorial-flow {
-      display: flex;
-      flex-direction: column;
-      gap: 40px;
-    }
-    .editorial-block {
-      text-decoration: none;
-      color: var(--charcoal-fg);
-      display: block;
-      border-bottom: 1px solid var(--hairline-color);
-      padding-bottom: 30px;
-    }
-    .editorial-block:hover h3 { color: var(--gold-accent); }
-    .editorial-block h3 {
-      font-family: var(--serif-font);
-      font-size: 1.4rem;
-      font-weight: 700;
-      margin-bottom: 12px;
-      transition: color 0.3s ease;
-    }
-    .editorial-block p {
-      font-size: 0.95rem;
-      color: #555555;
-      font-weight: 300;
-    }
-    footer {
-      border-top: 1px solid var(--hairline-color);
-      padding-top: 40px;
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.75rem;
-      letter-spacing: 0.1em;
-      color: #888888;
-    }
-    footer a { color: #888888; text-decoration: none; }
-    footer a:hover { color: var(--gold-accent); }
-    @media(max-width: 768px) {
-      header { flex-direction: column; gap: 16px; }
-      h1 { font-size: 2rem; }
-      .story-body { font-size: 1.05rem; }
-    }
-  </style>
+    </script>
+
+    <style>
+        /* 리셋 & 기본 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Impact, system-ui, sans-serif;
+            background-color: #000000;
+            color: #ffffff;
+            line-height: 1.2;
+            letter-spacing: 0.02em;
+            max-width: none;
+            overflow-x: hidden;
+        }
+        img {
+            display: block;
+            max-width: 100%;
+        }
+        a {
+            color: #ff3b00;
+            text-decoration: none;
+            border-bottom: 3px solid #ff3b00;
+        }
+        a:hover {
+            color: #ffffff;
+            border-bottom-color: #ffffff;
+        }
+        ul {
+            list-style: none;
+        }
+
+        /* 타이포그래피 Brutalist */
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+        }
+        h1 {
+            font-size: clamp(3.5rem, 15vw, 6rem);
+            line-height: 0.9;
+            margin-bottom: 0.5rem;
+            color: #ff3b00;
+            text-shadow: 4px 4px 0 #ffffff, 8px 8px 0 #000000;
+        }
+        h2 {
+            font-size: clamp(2.8rem, 10vw, 4.2rem);
+            border-left: 8px solid #ff3b00;
+            padding-left: 1rem;
+            margin-bottom: 2rem;
+        }
+        h3 {
+            font-size: clamp(1.8rem, 6vw, 2.8rem);
+            margin-bottom: 1.2rem;
+        }
+        p {
+            font-size: 1.2rem;
+            max-width: 70ch;
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+        }
+        strong {
+            color: #ff3b00;
+        }
+
+        /* 레이아웃 풀블리드 / 비대칭 */
+        .container {
+            width: 100%;
+            padding: 72px 24px;
+        }
+        .container--tight {
+            padding: 0 24px;
+        }
+        .section {
+            margin-bottom: 120px;
+            position: relative;
+        }
+        .section:last-of-type {
+            margin-bottom: 0;
+        }
+
+        /* 테두리 & 박스 */
+        .brutal-box {
+            border: 4px solid #ffffff;
+            padding: 48px 32px;
+            background-color: #000000;
+            transform: rotate(-1deg);
+            margin: 0 -12px 48px -12px;
+        }
+        .brutal-box--accent {
+            border-color: #ff3b00;
+            background-color: #ff3b00;
+            color: #000000;
+        }
+        .brutal-box--accent h2,
+        .brutal-box--accent p {
+            color: #000000;
+        }
+        .brutal-box--flip {
+            transform: rotate(0.5deg);
+            margin-right: -24px;
+            margin-left: 24px;
+        }
+        .brutal-box--small {
+            padding: 24px 20px;
+            transform: none;
+            margin: 0 0 24px 0;
+        }
+
+        /* 헤더 / 내비게이션 */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 24px 16px;
+            border-bottom: 6px solid #ff3b00;
+            margin-bottom: 48px;
+            position: relative;
+        }
+        .logo {
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: #ffffff;
+            border: none;
+            text-shadow: 2px 2px 0 #ff3b00;
+        }
+        .logo:hover {
+            color: #ffffff;
+            border: none;
+        }
+        nav {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+        nav a {
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            border: none;
+            border-bottom: 3px solid transparent;
+            padding-bottom: 4px;
+            color: #ffffff;
+        }
+        nav a:hover {
+            border-bottom-color: #ff3b00;
+            color: #ff3b00;
+        }
+        .nav-cta {
+            background-color: #ff3b00;
+            color: #000000;
+            padding: 8px 20px;
+            border: 3px solid #ffffff;
+            font-weight: 700;
+            font-size: 1.2rem;
+            transform: rotate(-1deg);
+        }
+        .nav-cta:hover {
+            background-color: #ffffff;
+            color: #000000;
+            border-color: #ff3b00;
+            transform: rotate(0deg);
+        }
+
+        /* 햄버거 (모바일) */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 6px;
+            background: none;
+            border: none;
+            padding: 8px;
+        }
+        .hamburger span {
+            display: block;
+            width: 32px;
+            height: 4px;
+            background-color: #ffffff;
+            border-radius: 0;
+        }
+        .mobile-nav {
+            display: none;
+            flex-direction: column;
+            background-color: #000000;
+            border: 4px solid #ff3b00;
+            padding: 32px 24px;
+            gap: 24px;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            z-index: 100;
+        }
+        .mobile-nav a {
+            font-size: 2rem;
+            border: none;
+            border-bottom: 3px solid transparent;
+        }
+        .mobile-nav a:hover {
+            border-bottom-color: #ff3b00;
+        }
+        .mobile-nav.active {
+            display: flex;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+            }
+            .hamburger {
+                display: flex;
+            }
+            header {
+                flex-wrap: wrap;
+            }
+            .container {
+                padding: 48px 16px;
+            }
+            h1 {
+                font-size: 3.5rem;
+                text-shadow: 2px 2px 0 #ffffff, 4px 4px 0 #000000;
+            }
+            h2 {
+                font-size: 2.4rem;
+                border-left: 6px solid #ff3b00;
+                padding-left: 0.75rem;
+            }
+            .brutal-box {
+                padding: 32px 16px;
+                transform: none;
+                margin: 0 0 32px 0;
+            }
+            .brutal-box--flip {
+                margin-right: 0;
+                margin-left: 0;
+                transform: none;
+            }
+            .section {
+                margin-bottom: 80px;
+            }
+        }
+
+        /* 히어로 */
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+            margin-bottom: 120px;
+        }
+        .hero-content {
+            z-index: 2;
+        }
+        .hero-visual {
+            background: repeating-linear-gradient(45deg, #ff3b00 0px, #ff3b00 8px, #000000 8px, #000000 16px);
+            border: 6px solid #ffffff;
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: rotate(2deg);
+            position: relative;
+        }
+        .hero-visual::after {
+            content: "⚡🔥⚡";
+            font-size: 5rem;
+            color: #ffffff;
+            text-shadow: 6px 6px 0 #000000;
+        }
+        .hero h1 {
+            margin-bottom: 24px;
+        }
+        .hero p {
+            font-size: 1.4rem;
+            border-left: 6px solid #ff3b00;
+            padding-left: 20px;
+        }
+        .hero-cta {
+            display: inline-block;
+            background-color: #ff3b00;
+            color: #000000;
+            padding: 12px 40px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            border: 4px solid #ffffff;
+            transform: rotate(-2deg);
+            margin-top: 16px;
+            text-transform: uppercase;
+        }
+        .hero-cta:hover {
+            background-color: #ffffff;
+            color: #000000;
+            border-color: #ff3b00;
+            transform: rotate(0deg);
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+            .hero-visual {
+                min-height: 200px;
+                transform: rotate(1deg);
+            }
+            .hero-visual::after {
+                font-size: 3.5rem;
+            }
+        }
+
+        /* 리뷰 카드 */
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 48px;
+            margin-top: 48px;
+        }
+        .review-card {
+            border: 4px solid #ffffff;
+            padding: 32px 24px;
+            background-color: #000000;
+            transform: rotate(-0.5deg);
+            position: relative;
+        }
+        .review-card:nth-child(odd) {
+            transform: rotate(0.8deg);
+            margin-top: -12px;
+        }
+        .review-card:nth-child(3n) {
+            transform: rotate(-1.2deg);
+            margin-top: 8px;
+        }
+        .review-card__header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            border-bottom: 3px solid #ff3b00;
+            padding-bottom: 12px;
+        }
+        .review-card__nick {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #ff3b00;
+        }
+        .review-card__date {
+            font-size: 0.9rem;
+            color: #aaaaaa;
+        }
+        .review-card__stars {
+            font-size: 1.6rem;
+            letter-spacing: 4px;
+            color: #ff3b00;
+        }
+        .review-card__text {
+            font-size: 1.1rem;
+            line-height: 1.4;
+            font-weight: 300;
+            margin-top: 8px;
+        }
+
+        /* 푸터 */
+        footer {
+            border-top: 6px solid #ff3b00;
+            padding: 48px 24px 24px;
+            margin-top: 120px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 24px;
+        }
+        footer .footer-phone {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #ffffff;
+            border: none;
+        }
+        footer .footer-phone:hover {
+            color: #ff3b00;
+            border: none;
+        }
+        footer .copyright {
+            font-size: 0.9rem;
+            color: #888;
+            letter-spacing: 0.1em;
+        }
+
+        @media (max-width: 768px) {
+            footer {
+                flex-direction: column;
+                text-align: center;
+                padding: 32px 16px 16px;
+            }
+            footer .footer-phone {
+                font-size: 1.6rem;
+            }
+        }
+
+        /* 유틸 */
+        .skew-text {
+            display: inline-block;
+            transform: skewX(-8deg);
+            background-color: #ff3b00;
+            color: #000000;
+            padding: 0 12px;
+        }
+        .mt-48 { margin-top: 48px; }
+        .mb-48 { margin-bottom: 48px; }
+        .text-center { text-align: center; }
+        .max-w-none { max-width: none; }
+
+        /* 추가 브루탈리스트 요소 */
+        .rule-thick {
+            height: 8px;
+            background-color: #ff3b00;
+            border: none;
+            margin: 72px 0;
+        }
+        .tagline {
+            font-size: 2.4rem;
+            border: 4px solid #ffffff;
+            display: inline-block;
+            padding: 8px 24px;
+            background-color: #000000;
+            transform: rotate(-1deg);
+        }
+        .tagline--accent {
+            border-color: #ff3b00;
+            color: #ff3b00;
+        }
+    </style>
 </head>
 <body>
-  <div class="wrapper">
-    <header>
-      <a href="/" class="brand">EDITORIAL.T3</a>
-      <nav><a href="index.html">HOME</a> | <a href="sitemap.xml">SITEMAP</a></nav>
-    </header>
-    <main>
-      <div class="kicker">BOUTIQUE T3 / ACCENT HAIRLINES</div>
-      <h1>서버 웜업 리서치 및 기술 인프라 저널</h1>
-      <div class="story-body">
-        환영합니다. 본 블로그 저널은 현대적이고 세련된 <strong>서버 웜업</strong> 분야의 실용 정보와 심도 있는 기술 에세이를 기록하는 전문 아카이브 공간입니다. 아래의 엄선된 아티클 리스트를 통해 다양한 인사이트를 확인하시기 바랍니다.
-      </div>
-      
-      
-      <div class="editorials">
-        <div class="editorial-label">Recent Articles</div>
-        <div class="editorial-flow">
-          
-        <a href="posts/normal-1.html" class="editorial-block">
-          <h3>서버 웜업: 서버 웜업: IP 신뢰도를 높이는 기술</h3>
-          <p>새로 할당받은 IP 평판을 신뢰할 수 있는 수준으로 안전하게 올리기 위해 발송량을 단계별로 제어하는 웜업 가이드는 이메일 및 대량 인프라 솔루션 구동의 초석입니다. 스팸 차단 시스...</p>
-        </a>
-      
 
-        <a href="posts/normal-2.html" class="editorial-block">
-          <h3>서버 웜업: 서버 웜업: 메일 인프라 빌드 요령</h3>
-          <p>완벽한 이메일 발송 인프라 구축의 기본은 SPF, DKIM, DMARC 등의 인증 방식 DNS 레코드를 철저히 셋업하는 일입니다. 인증이 누락되면 아무리 정밀하게 웜업을 진행하더라...</p>
-        </a>
-      
+<!-- 헤더 -->
+<header id="top">
+    <a href="/" class="logo">⚡ WARMUP</a>
+    <nav>
+        <a href="#features">서비스</a>
+        <a href="#reviews">리뷰</a>
+        <a href="tel:+821062790862" class="nav-cta">010-6279-0862</a>
+    </nav>
+    <button class="hamburger" id="hamburger" aria-label="메뉴 열기">
+        <span></span><span></span><span></span>
+    </button>
+    <div class="mobile-nav" id="mobileNav">
+        <a href="#features">서비스</a>
+        <a href="#reviews">리뷰</a>
+        <a href="tel:+821062790862">010-6279-0862</a>
+    </div>
+</header>
 
-        <a href="posts/normal-3.html" class="editorial-block">
-          <h3>서버 웜업: 서버 웜업: 트래픽 제어 시스템 구축</h3>
-          <p>인프라 엔지니어들이 가장 자주 실수하는 것은 트래픽 서지 제어를 누락하는 것입니다. 웜업 기간에는 로컬 큐에 메일이 쌓이지 않도록 주기적으로 쓰로틀링(Throttling)을 걸어 ...</p>
-        </a>
-      
+<main>
 
-        <a href="posts/juice-1.html" class="editorial-block">
-          <h3>서버 웜업 마니아들에게 강력 추천하는 백링크 자동화 프로그램 알짜배기 리스트</h3>
-          <p>이메일 대량 발송 서버 웜업을 진행하면서 도달률의 기술적 균형점을 분석하다 보면, 결국 강력하고 독보적인 성과 전이를 위해 최신 트렌드를 파악하는 안목의 중요성을 체감하게 됩니다....</p>
-        </a>
-      
-
-        <a href="posts/juice-2.html" class="editorial-block">
-          <h3>서버 웜업 마니아들에게 강력 추천하는 백링크 자동화 프로그램 알짜배기 리스트</h3>
-          <p>이메일 대량 발송 서버 웜업을 진행하면서 도달률의 기술적 균형점을 분석하다 보면, 결국 강력하고 독보적인 성과 전이를 위해 최신 트렌드를 파악하는 안목의 중요성을 체감하게 됩니다....</p>
-        </a>
-      
+    <!-- 히어로 섹션 -->
+    <section class="container hero section" id="hero">
+        <div class="hero-content">
+            <h1>서버<br>웜업 &<br>백링크<br>자동화</h1>
+            <p class="tagline tagline--accent mb-48">PBN 운영자 전용 · 마포</p>
+            <p><strong>백링크 자동화 프로그램</strong>으로 매일 수천 개의 링크를 웜업하세요. 당신의 PBN을 진짜 파워로 만드는 유일한 툴.</p>
+            <a href="tel:+821062790862" class="hero-cta">지금 전화 걸기</a>
         </div>
-      </div>
-    </main>
-    <footer>
-      <div>&copy; 2026 EDITORIAL.T3. ALL RIGHTS RESERVED.</div>
-      <div>
-        <a href="sitemap.xml">SITEMAP</a> | 
-        <a href="#">PRIVACY</a> | 
-        <a href="#">DISCLAIMER</a>
-      </div>
-    </footer>
-  </div>
+        <div class="hero-visual"></div>
+    </section>
+
+    <hr class="rule-thick container">
+
+    <!-- 특징 섹션 (서비스 설명) -->
+    <section class="container section" id="features">
+        <h2>왜 이 툴이<br><span class="skew-text">필수</span>인가</h2>
+        <div class="brutal-box brutal-box--flip">
+            <p><strong>서버 웜업?</strong> 그냥 트래픽 보내는 게 아니다. 우리 프로그램은 실제 유저 행동을 모방해 구글의 감시망을 피하고, PBN 사이트의 권위를 폭발시킨다. 백링크 자동화는 덤이다.</p>
+        </div>
+        <div class="brutal-box">
+            <h3>1. 완전 자동화</h3>
+            <p>한 번 설정하면 매일 자정에 서버가 웜업되고 백링크가 퍼진다. 너는 결과만 확인해라.</p>
+            <h3>2. 마포 최적화</h3>
+            <p>한국 데이터센터, 마포 라우팅 기반. 지연시간 제로. 해외 툴보다 3배 빠른 웜업 속도.</p>
+            <h3>3. PBN 맞춤형</h3>
+            <p>사이트 스킨, IP 로테이션, 콘텐츠 다양화까지. 티어3 PBN도 티어1처럼 보이게 만든다.</p>
+        </div>
+        <div class="tagline mt-48">📞 010-6279-0862 <span style="color:#ffffff;">상담은 전화 한 통이면 끝</span></div>
+    </section>
+
+    <hr class="rule-thick container">
+
+    <!-- UGC 리뷰 섹션 -->
+    <section class="container section" id="reviews">
+        <h2>사용자들의 <span class="skew-text">냉혹한</span> 평가</h2>
+        <p style="font-size:1.8rem; border-bottom:6px solid #ff3b00; display:inline-block; padding-bottom:8px;">가짜 리뷰 아님. 실제 PBN 운영자들 목소리</p>
+
+        <div class="reviews-grid">
+            <!-- 리뷰 1 -->
+            <div class="review-card">
+                <div class="review-card__header">
+                    <span class="review-card__nick">서버왕_김</span>
+                    <span class="review-card__date">2025-02-14</span>
+                </div>
+                <div class="review-card__stars">★★★★★</div>
+                <p class="review-card__text">“내 PBN 12개 사이트를 이 프로그램으로 웜업한 지 한 달. DR이 평균 18에서 34로 올랐다. 돈값 한다.”</p>
+            </div>
+            <!-- 리뷰 2 -->
+            <div class="review-card">
+                <div class="review-card__header">
+                    <
 </body>
 </html>
